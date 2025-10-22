@@ -33,30 +33,32 @@ rollno INT PRIMARY KEY,
 -- Display only the full_name and marks of all students.
 SELECT full_name, marks FROM student;
 
-
+-- Show students whose marks are greater than 85.
 SELECT * FROM student
 WHERE marks > 85;
 
-
+-- Show students who are from either Mumbai or Delhi
 SELECT * FROM student
 WHERE city = "mumbai" OR  city = "delhi";
 
-
+-- Display students whose grade is not ‘A’
 SELECT * FROM student
 WHERE grade <> "A";
 
-
+-- List students whose names start with the letter S.
 SELECT * FROM student
 WHERE full_name LIKE "s%";
 
-
+-- Show all students sorted by marks in descending order.
 SELECT * FROM student
 ORDER BY marks DESC;
 
-
+-- Display the top 3 students with the highest marks.
 SELECT * FROM student
 ORDER BY marks DESC 
 LIMIT 3;
+
+
 
 
 SELECT count(rollno) FROM student;
@@ -114,7 +116,64 @@ WHERE grade = "c";
 SELECT grade FROM student
 WHERE full_name = "praveena";
 
-  
+
+USE praveena;
+
+
+CREATE TABLE courses (
+  course_id INT PRIMARY KEY,
+  course_name VARCHAR(50),
+  instructor VARCHAR(50)
+);
+
+CREATE TABLE enrollments (
+  rollno INT,
+  course_id INT,
+  FOREIGN KEY (rollno) REFERENCES student(rollno),
+  FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+
+
+INSERT INTO courses (course_id, course_name, instructor)
+VALUES
+(1, 'Database Systems', 'Dr. Sharma'),
+(2, 'Web Development', 'Ms. Ritu'),
+(3, 'Machine Learning', 'Mr. Raj'),
+(4, 'Java Programming', 'Mrs. Nita'),
+(5, 'Operating Systems', 'Mr. Kumar');
+
+
+INSERT INTO enrollments (rollno, course_id)
+VALUES
+(101, 1),
+(101, 2),
+(102, 2),
+(103, 1),
+(104, 3),
+(105, 4),
+(106, 5),
+(107, 3),
+(108, 2);
+
+SELECT * FROM enrollments;
+SELECT * FROM courses;
+
+
+SELECT * FROM courses as a
+INNER JOIN student as b
+ON a.course_id = b.full_name;
+
+
+-- practicing for exam 
+ALTER TABLE student 
+ADD COLUMN grades VARCHAR(2);
+SELECT * FROM student;
+ALTER TABLE student
+DROP COLUMN grades;
+
+
+-- DROP TABLE courses;
+
 
 
 
