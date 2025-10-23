@@ -60,13 +60,16 @@ LIMIT 3;
 
 
 
+-- Level 2 – Aggregate Functions & GROUP BY
 
+-- Show the total number of students in the table.
 SELECT count(rollno) FROM student;
 
-
+-- Display the average marks of all students.
 SELECT avg(marks) from student;
 
 
+-- Show the highest and lowest marks in the class.
 SELECT * FROM student
 ORDER BY marks DESC LIMIT 1;
 
@@ -74,20 +77,26 @@ SELECT * FROM student
 ORDER BY marks LIMIT 1;
 
 
+
+-- Display the grade-wise average marks.
 SELECT grade, AVG(marks) 
 FROM student
 GROUP BY grade;
 
+
+-- Show the city-wise count of students.
 SELECT city, COUNT(rollno) FROM student
 GROUP BY city;
 
 
+-- Display the number of male and female students using GROUP BY gender.
 SELECT gender, COUNT(gender) FROM student
 GROUP BY gender;
 
-
+-- Show the average age of students who scored above 85.
 SELECT AVG(age) FROM student
 WHERE marks > 85;
+
 
 
 SELECT * FROM student
@@ -160,8 +169,8 @@ SELECT * FROM courses;
 
 
 SELECT * FROM courses as a
-INNER JOIN student as b
-ON a.course_id = b.full_name;
+INNER JOIN enrollments as b
+ON a.course_id = b.course_id;
 
 
 -- practicing for exam 
