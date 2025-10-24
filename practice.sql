@@ -99,10 +99,14 @@ WHERE marks > 85;
 
 
 
+-- level 3 – Subqueries
+
+-- Show the students who got marks greater than the class average.
 SELECT * FROM student
 WHERE marks > ( SELECT AVG(marks) FROM student);
 
 
+-- Display the students who have the same age as any other student (duplicate ages)
 SELECT * FROM student
 WHERE age IN(SELECT age FROM student 
 GROUP BY age
@@ -110,15 +114,16 @@ HAVING COUNT(*) > 1
 );
 
 
-
+-- Show students who have the maximum marks (use a subquery).
 SELECT * FROM student
 WHERE marks = (SELECT MAX(marks) FROM student);
 
 
+-- List students whose marks are within 10 points of the top scorer.
 SELECT * FROM student
 WHERE marks >= (SELECT MAX(marks) FROM student) - 10;
 
-
+-- Display students who have grades the same as the student named ‘Praveena’
 SELECT * FROM student
 WHERE grade = "c";
 
@@ -185,6 +190,36 @@ DROP COLUMN grades;
 
 
 
+-- Show all students with their enrolled course names
+SELECT * FROM student AS a
+INNER JOIN enrollments AS b
+ON a.rollno = b.rollno;
+
+SELECT * FROM courses as p
+INNER JOIN enrollments as q
+ON p.course_id = q.course_id;
+
+
+SELECT a.full_name, c.course_name
+FROM student AS a
+JOIN enrollments AS b ON a.rollno = b.rollno
+JOIN courses AS c ON b.course_id = c.course_id;
+
+
+-- Level 5 – Advanced / Real-World
+
+-- Increase marks by 5 for all students with grade ‘C’.
+
+-- UPDATE student
+-- SET marks = marks + 5
+-- WHERE grade = "c";
+
+-- DELETE FROM student
+-- WHERE marks < 60;
+
+SELECT * FROM student
+ORDER BY marks DESC
+LIMIT 1 OFFSET 1;
 
 
 
