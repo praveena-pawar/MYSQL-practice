@@ -127,6 +127,10 @@ WHERE marks >= (SELECT MAX(marks) FROM student) - 10;
 SELECT * FROM student
 WHERE grade = "c";
 
+
+
+-- Create another table called courses:
+
 SELECT grade FROM student
 WHERE full_name = "praveena";
 
