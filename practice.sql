@@ -210,16 +210,16 @@ JOIN enrollments AS b ON a.rollno = b.rollno
 JOIN courses AS c ON b.course_id = c.course_id;
 
 
--- Level 5 – Advanced / Real-World
+Level 5 – Advanced / Real-World
 
--- Increase marks by 5 for all students with grade ‘C’.
+Increase marks by 5 for all students with grade ‘C’.
 
--- UPDATE student
--- SET marks = marks + 5
--- WHERE grade = "c";
+UPDATE student
+SET marks = marks + 5
+WHERE grade = "c";
 
--- DELETE FROM student
--- WHERE marks < 60;
+DELETE FROM student
+WHERE marks < 60;
 
 SELECT * FROM student
 ORDER BY marks DESC
